@@ -11,7 +11,6 @@ const Filter = () => {
     const handleInputName = (evt) => {
         dispatch(setFilter(evt.target.value))
     };
-
     const filter = useSelector(getFilter)
 
     return (<Box
