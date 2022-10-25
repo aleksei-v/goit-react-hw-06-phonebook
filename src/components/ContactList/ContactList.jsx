@@ -9,17 +9,16 @@ const ContactList = () => {
     const dispatch = useDispatch();
 
     const contacts = useSelector(getContacts);
-
+    
     const filter = useSelector(getFilter);
 
     const filterContactByName = () => {
         const adjustedFilter = filter.toLocaleLowerCase();
-
         return contacts.filter(({ name }) =>
             name.toLocaleLowerCase().includes(adjustedFilter));
     };
 
-    const NewContacts = filterContactByName();
+    const currentContacts = filterContactByName();
 
     return (
         <Box
@@ -29,7 +28,7 @@ const ContactList = () => {
             p={4}
             alignItems="center"
         >
-            {NewContacts.map((({ id, name, number }) => {
+            {currentContacts.map((({ id, name, number }) => {
                 return (
                     <li key={id}>
                         {name}: {number}
