@@ -36,18 +36,20 @@ const ContactForm = () => {
             name,
             number,
         };
-        
-        return contacts.find(
-            ({ name }) => newContact.name.toLocaleLowerCase() === name.toLocaleLowerCase())
+        const isContactExists = contacts.find(({ name }) => newContact.name.toLocaleLowerCase() === name.toLocaleLowerCase());
+       
+        isContactExists
             ? Notify.failure(`${newContact.name} is already in contacts`) :
             dispatch(add(newContact));
+        if (!isContactExists) {
+            resetForm()
+        };
     };
 
     const onClickSubmit = (evt) => {
         evt.preventDefault();
         
         onSubmitContact({ name, number });
-        resetForm();
     };
 
     const resetForm = () => {
